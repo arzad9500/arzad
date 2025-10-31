@@ -1,0 +1,17 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Product Add Paage</h1>
+  <a href="/inventory/allproduct/"><button>back</button></a>  
+  <div class="container">
+  <form action="" method="POST" enctype='multipart/form-data'>   <!-- just show the form from forms.py for take input from ui,, enctype for image input -->
+    {% csrf_token %}
+    {{p_form}}  <!-- # 5   P_form is passed from the view.py( key name ) # 6 urls.py # 7 views.py --> 
+    <br>
+    <input class="btn btn-primary" type="submit" value="add product">
+    <br><br>
+  </form>
+</div>
+{% endblock %}

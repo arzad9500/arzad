@@ -1,0 +1,105 @@
+<!---we already did product_add.html that was collect data from ui and save in d/b 
+and this is to show d/b stuffs into ui this page chect views.py -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding:0;
+      margin:0;
+      box-sizing:border-box;
+      width:100vw;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      overflow-x: hidden; 
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 10px auto;  
+    }
+
+    table {
+      margin:0 20px;
+      background-color: #fff;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    button {
+      padding: 5px 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
+  <h1>All Products inventory</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Product Code</th>
+        <th>Price</th>
+        <th>GST</th>
+        <th>Food Product</th>
+        <th>Picture</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead> <!--until this to show this manual fields in ui-->
+    <tbody>
+      {% for pro in all_p %} <!--- # 9 all_p  is from views.py(key name) # 10 urls.py # 11 views.py-->
+      <tr>
+        <td>{{ pro.product_name }}</td> <!--- # product_name is from models.py -->
+        <td>{{ pro.product_code }}</td>
+        <td>{{ pro.price }}</td>
+        <td>{{ pro.gst }}</td>
+        <td>{{ pro.food_product }}</td>
+        <td>
+          {% if pro.picture %}
+
+          <!-- {{ pro.picture }} -->
+          <img src="{{ pro.picture.url }}" alt="thumbnail" width="50px" height="50px" >
+          {% else %}
+          {% comment %} <p>no picture</p> {% endcomment %}
+          no picture
+          {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'upd_pro' pro.id %}"><button>Update</button></a> <!---upd_pro we give name in url-->
+        </td>
+        <td>
+            <a href="{% url 'del_pro' pro.id %}"><button>Delete</button></a>  <!---del_pro we give name in url-->
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="/inventory/product_add/"><button>ADD PRODUCT</button></a>  
+
+{% endblock %}

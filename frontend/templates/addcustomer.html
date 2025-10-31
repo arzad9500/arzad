@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>add customer</h1>
+    <a href="/order/allcustomer/"><button>back</button></a>  
+    <form action="" method="POST">   <!-- just show the form from forms.py for take  input from ui -->
+    {% csrf_token %}
+    {{ c_form }}   
+    <input type="submit" value="add customer">
+    
+  </form>
+</body>
+</html>
+{% endblock %}

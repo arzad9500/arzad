@@ -1,0 +1,102 @@
+{% extends 'base.html' %}  <!---extend be the first line-->
+{% comment %} {% load static %} {% endcomment %}
+
+
+{% block content %}
+
+    <title>All Customers</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/allcustomer.css' %}">  {% endcomment %}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+
+
+    <h1>All Customers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Customer Since</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in all_cust %}
+            <tr>
+                <td>{{ customer.customer_name }}</td>
+                <td>{{ customer.customer_since }}</td>
+                <td>
+                    <a href="{% url 'upd_cust' customer.id %}"><button>Update</button></a>
+                </td>
+                <td>
+                    <a href="{% url 'del_cust' customer.id %}"><button class="delete-btn">Delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      <a href="/order/addcustomer/"><button>ADD CUSTOMER</button></a>  
+
+<p class='colorkudu'> connectin css in base.html with static file Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
+     cupiditate praesentium magni consequuntur labore, delectus necessitatibus sint enim 
+     impedit sequi tenetur quidem? Beatae quidem nesciunt tempora quia? Similique, 
+     dignissimos ad.</p> 
+<p class='col'> connectin css in base.html with static file Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
+        cupiditate praesentium magni consequuntur labore, delectus necessitatibus sint enim 
+        impedit sequi tenetur quidem? Beatae quidem nesciunt tempora quia? Similique, 
+        dignissimos ad.</p> 
+
+
+{% endblock content %}
+

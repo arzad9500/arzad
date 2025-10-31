@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="/order/allorders/"><button>back</button></a>  
+
+<h1> add orders </h1>
+<div class="container">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ ord_form }}  <!--- ord_form is from views.py (addorders) -->
+
+    <input type="submit" value="add order">
+</form>
+</div>
+{% endblock %}

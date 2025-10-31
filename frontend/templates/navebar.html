@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Always Visible</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/navebar.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/inventory/navebar/">Navebar</a>
+      <div class="navbar-nav d-flex flex-row flex-wrap">
+
+        {% if request.user.role == 0 %}    <!--login users role-->
+        <!-- if the user is admin it will show the home link -->
+        <a class="nav-link active px-3" href="/inventory/home/">Home</a>
+
+        {% endif %}
+        {% comment %} <a class="nav-link active px-3" href="/inventory/product_add/">product_add</a> {% endcomment %}
+        <a class="nav-link active px-3" href="/inventory/allproduct/">allproduct</a>
+        {% comment %} <a class="nav-link active px-3" href="/order/addcustomer/">addcustomer</a> {% endcomment %}
+        <a class="nav-link active px-3" href="/order/allcustomer/">alllcustomer</a>
+        {% comment %} <a class="nav-link active px-3" href="/order/addorders/">addorders</a> {% endcomment %}
+        <a class="nav-link active px-3" href="/order/allorders/">allorders</a>
+        <a class="nav-link active px-3" href="/signuppage/">createUser</a>
+        <a class="nav-link active px-3" href="/logoutpage/">logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

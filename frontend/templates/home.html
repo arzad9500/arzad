@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% load static %} <!--this  line for image down lorem we use static in base.html -->
+
+{% block  content %}
+       <a href="/admin/" class="btn btn-primary fw-bold mt-3 ms-3">Go to Admin Page</a>
+
+    <h1>home page</h1>
+
+    {% if name == 'arzad' %} <!-- -name shoud not be '' and arzad shoud be '' -->
+    <h2>welcome {{name}} </h2>
+
+    {% elif name == 'admin' %}  <!--- may this not work , because no else-->
+    <h2> adei  admin  </h2>
+
+    {% else %}
+    <h2> you are not allow for log in</h2>
+
+    {% endif %}
+
+
+    {%for k,v in mark.items  %}
+    <h3> the subject is {{k}} and the mark is {{v}}<h3>
+    {% endfor %}
+
+    {% for num in list %}
+    <p>  the list is {{num}} <p>
+    {% endfor %}
+    <img src="{% static 'assects/images/bird.jpg' %}" alt="bird image" style="width: 500px; height: 450px;">
+
+{% endblock %}
+
+
