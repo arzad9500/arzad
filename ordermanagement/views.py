@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import redirect, render
 from .forms import *
 from .models import *
 from django.contrib.auth.decorators import login_required # this works only function based view
@@ -51,6 +51,8 @@ def updatecustomer(request,id):
     return render(request,'addcustomer.html',data)
 
 
+
+
 @login_required(login_url='/')
 def addorders(request):
 
@@ -59,11 +61,11 @@ def addorders(request):
     }
     if request.method == 'POST': #  check code camp 17 th video 
         # print(request.POST) # take input drom ui and check in terminal
-        selected_product = product.objects.get(id = request.POST['product_reference']) #  post method quantity and price will change so use product_reference 
+        selected_product = product.objects.get(id = request.POST['product_reference'])# it holds id of product  #  post method quantity and price will change so use product_reference 
         # take throuugh id and get all value of product
         amount = float(selected_product.price) * float(request.POST['quantity']) # amount is price its in inventory
-
-        gst_amount= (amount * selected_product.gst) / 100 # selected_product stores all the value of product_reference
+        # selected_product.price --> id.price --> id is product and request.POST['quantity'] ,quantity is from ui we get from ui
+        gst_amount = (amount * selected_product.gst) / 100 # selected_product stores all the value of product_reference
 
         bill_amount = amount + gst_amount
         
@@ -95,6 +97,7 @@ def deleteorders(request,id):
 
 @login_required(login_url='/')
 def updateorders(request,id):
+
     upd_ord=orders.objects.get(id=id)
 
     data ={
@@ -104,13 +107,14 @@ def updateorders(request,id):
     if request.method == 'POST': # in update we change somethinng so up logic will apply down 4 line
         # print(request.POST)
         selected_product = product.objects.get(id = request.POST['product_reference'])
-
+        # Because product price and GST come from product table, not the order table.
         amount = float(selected_product.price) * float(request.POST['quantity']) # amount is price its in inventory
 
         gst_amount= (amount * selected_product.gst) / 100
 
         bill_amount = amount + gst_amount
 
+        # Update the order in the database
         filter_order = orders.objects.filter(id=id) # new check YT 18 video 16.00
         filter_order.update(customer_reference_id = request.POST['customer_reference'],
                             product_reference_id = request.POST['product_reference'], order_number = request.POST

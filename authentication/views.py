@@ -9,7 +9,7 @@ def loginpage(request):# 1  # check YT 22 la 6.00
     # if we login once , we no need to login again and again until we logout
     if request.user.is_authenticated: # user is from down     # this and downn for automatic login , 
         return redirect('/inventory/allproduct/') # if authentication this will redrect
-    # user is authenticated then he go without logout this happen
+    # user is authenticated(session) then he go without logout this happen
     context ={  # 10
         'error':''
     }
@@ -33,7 +33,7 @@ def loginpage(request):# 1  # check YT 22 la 6.00
 
     return render (request,'login.html',context)# 2
 
-@login_required(login_url='/')
+@login_required(login_url='/') # these for if we login we access this page (cannot access through url by manual)
 def  logoutpage(request): # 
     logout (request)   # request already store user(this happen in login inside if) so we pass only the request 
 
@@ -69,7 +69,7 @@ def signuppage(request):           # @   check YT 23 video
 
             return render(request, 'signup.html',context)
 
-        else :
+        else : # user is model 
             new_user = user(  # @  # 2 is come inside of else part
             first_name=request.POST['f_name'], # @  # first_name is from d/b name , f_name is from ui (signup.html) 
             last_name=request.POST['lastname'], # @ 

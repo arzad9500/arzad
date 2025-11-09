@@ -91,10 +91,10 @@ and this is to show d/b stuffs into ui this page chect views.py -->
           {% endif %}
         </td>
         <td>
-            <a href="{% url 'upd_pro' pro.id %}"><button>Update</button></a> <!---upd_pro we give name in url-->
+            <a href="{% url 'inventory:upd_pro' pro.id %}"><button>Update</button></a> <!---upd_pro we give name in url-->
         </td>
         <td>
-            <a href="{% url 'del_pro' pro.id %}"><button>Delete</button></a>  <!---del_pro we give name in url-->
+            <a href="{% url 'inventory:del_pro' pro.id %}"><button>Delete</button></a>  <!---del_pro we give name in url-->
         </td>
       </tr>
       {% endfor %}

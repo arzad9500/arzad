@@ -15,3 +15,4 @@ class user(AbstractUser): # user is custom model and AbstractUser is joind with 
     role = models.IntegerField(default=0,choices=role_choices)
 
 
+# this is currently using 
